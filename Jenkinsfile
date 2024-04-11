@@ -14,19 +14,19 @@ pipeline {
                 }
             }
         }
-        stage('Install Apache') {
-            steps {
-                script {
-                    sh """
-                        sudo apt update
-                        sudo apt install apache2 -y
-                        sudo systemctl start apache2
-                        sudo systemctl status apache2
-                        sudo systemctl enable apache2
-                    """
-                }
-            }
-        }
+        // stage('Install Apache') {
+        //     steps {
+        //         script {
+        //             sh """
+        //                 sudo apt update
+        //                 sudo apt install apache2 -y
+        //                 sudo systemctl start apache2
+        //                 sudo systemctl status apache2
+        //                 sudo systemctl enable apache2
+        //             """
+        //         }
+        //     }
+        // }
         stage('Create a dir to deploy the code') {
             steps {
                 script {
