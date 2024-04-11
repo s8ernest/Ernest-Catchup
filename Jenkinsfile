@@ -1,15 +1,15 @@
 pipeline {
-    agent { label 'SERVER04' }
+    agent any
     parameters {
-        string(name: 'BRANCH_NAME', defaultValue: 's8chinedu', description: '')
+        string(name: 'BRANCH_NAME', defaultValue: 's8ernest', description: '')
     }
     stages {
         stage('Clone Repository') {
             steps {
                 script {
                     // Clone the repository using SSH with private key and checkout the specific branch
-                    git credentialsId: 'jenkins-ssh-agents-private-key',
-                        url: 'git@github.com:DEL-ORG/s8-web-2.git',
+                    git credentialsId: 'github-token',
+                        url: 'https://github.com/s8ernest/Ernest-Catchup.git',
                         branch: "${params.BRANCH_NAME}"
                 }
             }
@@ -32,7 +32,7 @@ pipeline {
                 script {
                     sh """
                         cd /var/www/html
-                        sudo mkdir s8chinedu || true
+                        sudo mkdir s8ernest || true
                     """ 
                 }
             }
@@ -43,7 +43,7 @@ pipeline {
                     sh """
                         pwd
                         ls -l
-                        sudo cp -r * /var/www/html/s8tia
+                        sudo cp -r * /var/www/html/s8ernest
                     """ 
                 }
             }
